@@ -1,15 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
 import './App.css'
+import MVPVersion1 from './pages/MVPVersion1'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <div className="App">
+    <BrowserRouter>
+      <Routes>
+        <Route path='mvpversion1' element={<MVPVersion1/>} />  
+      </Routes>    
+    </BrowserRouter>
 
-
-    </div>
   )
 }
 
