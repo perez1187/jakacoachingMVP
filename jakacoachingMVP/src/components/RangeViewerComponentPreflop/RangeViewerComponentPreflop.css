@@ -1,0 +1,23 @@
+.RangeViewerComponentPreflopAction{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.RangeViewerComponentPreflopActionAction {
+    display: flex;
+    flex-direction: column;
+    
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.RangeViewerComponentPreflopActionPlayer {
+    display: flex;
+    flex-direction: column;
+
+    margin-left: 3px;
+    margin-right: 3px;
+}

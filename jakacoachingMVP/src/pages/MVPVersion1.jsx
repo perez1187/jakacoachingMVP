@@ -1,9 +1,17 @@
 import React from 'react'
-import RangeViewerComponent from '../components/RangeViewerComponent/RangeViewerComponent'
+import RangeViewerComponent from '../components/RangeViewerComponent/RangeViewerComponentBB'
+import RangeViewerComponentPreflop from '../components/RangeViewerComponentPreflop/RangeViewerComponentPreflop'
+import RangeViewerComponentRanges from '../components/RangeViewerComponentRanges/RangeViewerComponentRanges'
+
+import './MVPVersion1.css'
 
 function MVPVersion1() {
   return (
-    <div> <RangeViewerComponent/> </div>
+    <div className='ver1AppBox'> 
+      <RangeViewerComponent/> 
+      <RangeViewerComponentPreflop/>
+      <RangeViewerComponentRanges/>
+    </div>
   )
 }
 

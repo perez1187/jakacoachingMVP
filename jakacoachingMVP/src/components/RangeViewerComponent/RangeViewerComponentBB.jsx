@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 
 // css
 import './RangeViewerComponent.css'
+
+// context
+import RangeViewerContext from '../../contexts/RangeViewerContext'
 
 function RangeViewerComponent() {
 
@@ -9,19 +12,19 @@ function RangeViewerComponent() {
     const [toggle, setToggle] = useState(false)
 
     // big blinds state
-    const [BB100, setBB100] = useState(false)
+    const {BB100, setBB100} = useContext(RangeViewerContext)
     const [BB100Style, setBBStyle] = useState('#FCFCFC')
 
-    const [BB60, setBB60] = useState(false)
+    const {BB60, setBB60} = useContext(RangeViewerContext)
     const [BB60Style, setBB60Style] = useState('#FCFCFC')
 
-    const [BB40, setBB40] = useState(false)
+    const {BB40, setBB40} = useContext(RangeViewerContext)
     const [BB40Style, setBB40Style] = useState('#FCFCFC')
 
-    const [BB30, setBB30] = useState(false)
+    const {BB30, setBB30} = useContext(RangeViewerContext)
     const [BB30Style, setBB30Style] = useState('#FCFCFC')
 
-    const [BB20, setBB20] = useState(false)
+    const {BB20, setBB20} = useContext(RangeViewerContext)
     const [BB20Style, setBB20Style] = useState('#FCFCFC')
 
     // use effect for changing states, activates by toggle
@@ -94,7 +97,7 @@ function RangeViewerComponent() {
             setBB30(false)
             setBB20(true)            
         }        
-        setToggle(current => !current);
+        setToggle(current => !current); // switch toggle
     }
 
   return (
@@ -106,8 +109,8 @@ function RangeViewerComponent() {
             <button onClick={()=> ChangeActiveBB(30)} style={{backgroundColor: BB30Style}}> 30bb </button>
             <button onClick={()=> ChangeActiveBB(20)} style={{backgroundColor: BB20Style}}> 20bb </button>
         </div>
-        <div> 3 columns, action pre, first second</div>
-        <div> two ranges</div>
+
+
     
     </div> // RangeViewerComponentbox
   )
