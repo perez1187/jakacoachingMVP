@@ -1,0 +1,10 @@
+.LPButtons{
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.LPButton{
+    width: 250px;
+    margin: 3px;
+}

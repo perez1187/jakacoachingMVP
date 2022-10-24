@@ -6,6 +6,7 @@ import { RangeViewerContextProvider } from './contexts/RangeViewerContext.jsx'
 
 import './App.css'
 import MVPVersion1 from './pages/MVPVersion1'
+import LandingPage from './pages/LandingPage.jsx'
 
 
 
@@ -18,7 +19,8 @@ function App() {
     <BrowserRouter>
     <RangeViewerContextProvider> 
       <Routes>
-        <Route path='mvpversion1' element={<MVPVersion1/>} />  
+        <Route path='/' element={<LandingPage/>} />  
+        <Route path='mvpversion1' element={<MVPVersion1/>} /> 
       </Routes>  
     </RangeViewerContextProvider>  
     </BrowserRouter>
