@@ -5,6 +5,7 @@
     align-items: center;
 }
 
+
 .freqOfHandMiniBox{
     margin: 10px;
     font-size: 18px;
@@ -12,13 +13,19 @@
 
 .hand{
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .groupedBox {
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: row; 
+    align-items: center;
+    margin-bottom: 10px;   
+}
+
+.PVCPostions{
+    font-size: 24px;
+    margin-left: 10px;
 }
 
 /* .{
@@ -26,4 +33,19 @@
 } */
 .additionalInfoBox{
     font-size: 14px;
+}
+
+.PVCRenderhands {
+    width: 600px;
+}
+
+.PVCOverallStatsBox{
+    display: flex;
+    flex-direction: row;
+    font-size: 32px;
+}
+.freqOfHandMiniBoxMain{
+    margin: 5px;
+    margin-bottom: 15px;
+    margin-top: 15px;
 }

@@ -1,12 +1,27 @@
 import React, {useState, useEffect} from 'react'
 
 // manual data
-import jsonData from '../../assets/example.json'
+import jsonData2 from '../../assets/example.json'
+import jsonData from '../../assets/example222.json'
 
 // css
 import './PostflopViewerComponent.css'
 
 function PostflopViewerComponent() {
+
+    // useState for fetching flop data
+    const [myData, setMyData] = useState(jsonData2)
+    
+    // temporary button colors
+    const activeButtonColor = 'lightblue'
+    const notActiveButtonColor = '#FCFCFC'
+
+    // temporary use state for manualy choosing flop
+    const [flop332, setFlop332] = useState(false)
+    const [flop332Style, setFlop332Style] = useState(activeButtonColor)
+    
+    const [flopA86, setFlopA86] = useState(false)
+    const [flopA86Style, setFlopA86Style] = useState(notActiveButtonColor)
 
     const [data, setData] = useState([]) // array with hands data
     const [oneHand, setOneHand] = useState('')
@@ -14,23 +29,46 @@ function PostflopViewerComponent() {
     // use states for data
     const [bet17EV, setBet17EV] = useState('0')    
     const [bet17Freq, setBet17Freq] = useState('0') 
+    const [bet17FreqTot, setBet17Tot] = useState('0') 
 
     const [bet30EV, setBet30EV] = useState('0')
     const [bet30Freq, setBet30Freq] = useState('0')
+    const [bet30FreqTot, setBet30FreqTot] = useState('0')
 
     const [bet60EV, setBet60EV] = useState('0')
     const [bet60Freq, setBet60Freq] = useState('0')
+    const [bet60FreqTot, setBet60FreqTot] = useState('0')
 
     const [bet100EV, setBet100EV] = useState('0')
     const [bet100Freq, setBet100Freq] = useState('0')
+    const [bet100FreqTot, setBet100FreqTot] = useState('0')
 
     const [betCHECKEV, setBetCHECKEV] = useState('0')
     const [betCHECKFreq, setBetCHECKFreq] = useState('0')
+    const [betCHECKFreqTot, setBetCHECKFreqTot] = useState('0')
 
     const [IPEQR, setIPEQR] = useState('0')
     const [IPEV, setIPEV] = useState('0')
     const [IPEquity, setEquity] = useState('0')
     const [WeightIP, setWeightIP] = useState('0')
+
+    // manualy choosing flop
+    function ManualChooseFlop(flop){
+        if (flop == 1) {
+            setFlop332(true)
+            setFlop332Style(activeButtonColor)
+            setFlopA86(false)
+            setFlopA86Style(notActiveButtonColor)
+
+            setMyData(jsonData2)
+        } else {
+            setFlop332(false)
+            setFlop332Style(notActiveButtonColor)
+            setFlopA86(true) 
+            setFlopA86Style(activeButtonColor)
+            setMyData(jsonData)           
+        }
+    }
     
     // render hands
     function RenderHands() {
@@ -49,17 +87,20 @@ function PostflopViewerComponent() {
 
     // uploadiing data from manual json file (or something similar to json)
     useEffect(()=>{
-        const myData = jsonData
-        // const myDataNames = Object.keys(myData)
-        // console.log(myDataNames)
-
-        const myDataValues = Object.values(myData)
-        setData(myDataValues)   
-    },[])
+        function ChooseFlop() {
+            // const myData = jsonData
+            // const myDataNames = Object.keys(myData)
+            // console.log(myDataNames)
+    
+            const myDataValues = Object.values(myData)
+            setData(myDataValues)
+        }
+        ChooseFlop()
+    },[myData])
 
     // use effect for setting dashboard with ino about hands
     useEffect(()=> {
-        console.log(oneHand)
+        // console.log(oneHand)
         function HandObject(hh) {
             let object = {}
             try{
@@ -67,7 +108,7 @@ function PostflopViewerComponent() {
             } catch(e) {
                 console.log("wrong hand")
             }
-            console.log(object)
+            // console.log(object)
             try{
                 // console.log(object["BET 17% EV"])
                 // we set value for percent of betting
@@ -168,41 +209,104 @@ function PostflopViewerComponent() {
     
             } catch(e) {
                 console.log('cos nie tak')
-            }
-            
+            }            
         }
         HandObject(oneHand)
     },[oneHand])
 
+    // use effect for fanding overal stats on particular board
+    useEffect(()=>{
+        function FindBoardStats(){
 
+            let sumCB17 = 0
+            let sumCB30 = 0
+            let sumCB60 = 0
+            let sumCB100 = 0
+            let sumCheck = 0
+            let sumId = 0
 
+            const ScaningData = data.map(
+                (element) => {
+                    if (element["BET 17% freq"] == null){
+                        sumCB17 +=0
+                    } else {
+                        sumCB17 += element["BET 17% freq"] * element["Weight IP"]
+                        sumCB30 += element["BET 30% freq"] * element["Weight IP"]
+                        sumCB60 += element["BET 60% freq"] * element["Weight IP"]
+                        sumCB100 += element["BET 100% freq"] * element["Weight IP"]
+                        sumCheck += element["CHECK freq"] * element["Weight IP"]
+                        sumId +=1
+                    }                    
+                }
+            )
+            setBet17Tot(Math.round( ((sumCB17/sumId)*100) )/100)
+            setBet30FreqTot(Math.round( ((sumCB30/sumId)*100) )/100)
+            setBet60FreqTot(Math.round( ((sumCB60/sumId)*100) )/100)
+            setBet100FreqTot(Math.round( ((sumCB100/sumId)*100) )/100)
+            setBetCHECKFreqTot(Math.round( ((sumCheck/sumId)*100) )/100)
+            return console.log(sumCB17/sumId)
+        }
+        FindBoardStats()
+    },[data])
 
   return (
     <div > 
         {/* <div onClick={()=> CheckData()}>PostflopViewerComponent</div> */}
         <div className='groupedBox' >
             <div>Situation: </div>
-            <div>RFI BTN v BB 60bb</div>
+            <div className='PVCPostions'>RFI BTN v BB 60bb</div>
             <button disabled={true}> change </button>
         </div>
-        <div> Info about the hand:</div> 
+        <div className='groupedBox' >
+            <div>FLOP: </div>
+            <div className='PVCPostions'>
+                 <button onClick={()=> ManualChooseFlop(1)} style={{backgroundColor: flop332Style}}>3s 3h 2d</button>
+                 <button onClick={()=> ManualChooseFlop(2)} style={{backgroundColor: flopA86Style}}>As 8s 6s</button>
+            </div>
+            {/* <button disabled={true}> change </button> */}
+        </div>
+        <div> in the future search box/matrix with cards for finding a flop</div>
+        <div> Overall stats </div>
+        <div className='PVCOverallStatsBox'>
+            <div className='freqOfHandMiniBoxMain'>
+                <div>100% CB</div>
+                <div>{bet100FreqTot}</div>
+            </div>
+            <div className='freqOfHandMiniBoxMain'> 
+                <div>60% CB</div>
+                <div>{bet60FreqTot}</div>
+            </div>
+            <div className='freqOfHandMiniBoxMain'>
+                <div>30% CB</div>
+                <div>{bet30FreqTot}</div>
+            </div>
+            <div className='freqOfHandMiniBoxMain'>
+                <div>17% CB</div>
+                <div>{bet17FreqTot}</div>
+            </div>
+            <div className='freqOfHandMiniBoxMain'>
+                <div>CHECK freq</div>
+                <div>{betCHECKFreqTot}</div>               
+            </div>             
+        </div>
+        <div> Info about the hand: (hover the mouse over a hands on the matrix)</div> 
         <div className='hand'>{oneHand}</div> 
         <div className='freqOfHand'>
             <div className='freqOfHandMiniBox'>
-                <div>17% CB</div>
-                <div>{bet17Freq}</div>
-            </div>
-            <div className='freqOfHandMiniBox'>
-                <div>30% CB</div>
-                <div>{bet30Freq}</div>
+                <div>100% CB</div>
+                <div>{bet100Freq}</div>
             </div>
             <div className='freqOfHandMiniBox'> 
                 <div>60% CB</div>
                 <div>{bet60Freq}</div>
             </div>
             <div className='freqOfHandMiniBox'>
-                <div>100% CB</div>
-                <div>{bet100Freq}</div>
+                <div>30% CB</div>
+                <div>{bet30Freq}</div>
+            </div>
+            <div className='freqOfHandMiniBox'>
+                <div>17% CB</div>
+                <div>{bet17Freq}</div>
             </div>
             <div className='freqOfHandMiniBox'>
                 <div>CHECK freq</div>
@@ -222,7 +326,7 @@ function PostflopViewerComponent() {
             <div>WEIGHT: {WeightIP}</div>
         </div>
 
-        <div>{RenderHands()}</div>
+        <div className='PVCRenderhands'>{RenderHands()}</div>
     </div>
   )
 }
