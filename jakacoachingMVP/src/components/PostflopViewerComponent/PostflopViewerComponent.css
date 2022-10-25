@@ -7,9 +7,23 @@
 
 .freqOfHandMiniBox{
     margin: 10px;
+    font-size: 18px;
 }
 
 .hand{
     font-weight: bold;
-    font-size: large;
+    font-size: 25px;
+}
+
+.groupedBox {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+/* .{
+    font-family: 'Barlow';
+} */
+.additionalInfoBox{
+    font-size: 14px;
 }

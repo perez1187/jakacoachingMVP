@@ -83,7 +83,7 @@ function PostflopViewerComponent() {
                 if (object["BET 17% EV"] == null) {
                     setBet17EV('0')
                 } else {
-                    setBet17EV(object["BET 17% freq"])
+                    setBet17EV(object["BET 17% EV"])
                 }
 
                 // BET 30% EV
@@ -140,8 +140,32 @@ function PostflopViewerComponent() {
                     setBetCHECKFreq('0')
                 } else {
                     setBetCHECKFreq(object["CHECK freq"])
-                }                                    
-                
+                }
+                // EQR IP
+                if (object["IP EQR"] == null) {
+                    setIPEQR('0')
+                } else {
+                    setIPEQR(object["IP EQR"])
+                }
+                // EV IP
+                if (object["IP EV"] == null) {
+                    setIPEV('0')
+                } else {
+                    setIPEV(object["IP EV"])
+                }
+               // EQUITY IP
+                if (object["IP Equity"] == null) {
+                    setEquity('0')
+                } else {
+                    setEquity(object["IP Equity"])
+                }
+                // WEIGHT IP
+                if (object["Weight IP"] == null) {
+                    setWeightIP('0')
+                } else {
+                    setWeightIP(object["Weight IP"])
+                }                                                                                  
+    
             } catch(e) {
                 console.log('cos nie tak')
             }
@@ -154,9 +178,13 @@ function PostflopViewerComponent() {
 
 
   return (
-    <div> 
-        <div onClick={()=> CheckData()}>PostflopViewerComponent</div>
-        <div>Situation: </div>
+    <div > 
+        {/* <div onClick={()=> CheckData()}>PostflopViewerComponent</div> */}
+        <div className='groupedBox' >
+            <div>Situation: </div>
+            <div>RFI BTN v BB 60bb</div>
+            <button disabled={true}> change </button>
+        </div>
         <div> Info about the hand:</div> 
         <div className='hand'>{oneHand}</div> 
         <div className='freqOfHand'>
@@ -178,8 +206,20 @@ function PostflopViewerComponent() {
             </div>
             <div className='freqOfHandMiniBox'>
                 <div>CHECK freq</div>
-                <div>{betCHECKFreq}</div>
-            </div>                
+                <div>{betCHECKFreq}</div>               
+            </div>   
+        </div>{/* freqOfHand */}
+        <div>additional info</div>
+        <div className='additionalInfoBox'>
+            <div>EV CB 17%: {bet17EV}</div>
+            <div>EV CB 30%: {bet30EV}</div>
+            <div>EV CB 60%: {bet60EV}</div>
+            <div>EV CB 100%: {bet100EV}</div>
+            <div>EV CHECK: {betCHECKEV}</div>
+            <div>EQR: {IPEQR}</div>
+            <div>EV: {IPEV}</div>
+            <div>EQUITY: {IPEquity}</div>
+            <div>WEIGHT: {WeightIP}</div>
         </div>
 
         <div>{RenderHands()}</div>
