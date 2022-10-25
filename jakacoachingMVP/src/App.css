@@ -1,8 +1,13 @@
-/* .root{
-  width: 900px;
-  height: 1000px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-  background-color: gray;
-} */
+:root{
+  width: auto;
+  height: auto;
+  margin: 0;
+  /* padding: 2rem; */
+  /* text-align: center; */
+  background-color: #011c3b;
+  /* display: flex; */
+}
+
+body{
+  margin: 0;
+}

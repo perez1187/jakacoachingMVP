@@ -8,13 +8,13 @@ function RangeViewerComponentRanges() {
   return (
     <div className='RangeViewerComponentRanges'>
       <div >
-        <div> Title Range 1</div>
+        <div style={{color:"white"}}> Title Range 1</div>
         <div className='RangeViewerComponentRangesRange' > 
           <img src={Range1} alt="Logo" className='rangeManual'/>
         </div>
       </div>  
       <div> 
-        <div> Title Range 2</div>
+        <div style={{color:"white"}}> Title Range 2</div>
         <div className='RangeViewerComponentRangesRange'> 
           <img src={Range1} alt="Logo" className='rangeManual'/>
         </div>

@@ -1,0 +1,41 @@
+.NCBox{
+    background-color: black;
+    align-items: center;
+    justify-content: right;
+    display: flex;
+    flex-direction: row;
+}
+.NCLogoNavigation{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5px;
+    /* margin-left: auto; */
+    /* width: 1000px; */
+}
+
+.NCNavigation{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    margin-left: auto;
+}
+
+.NCLogo{
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.NCNavItem{
+    /* margin-left: auto; */
+    width: auto;
+    margin-left: 7px;
+    margin-right: 7px;
+    font-size: 1.125rem;
+    /* margin-top: 10px; */
+}
+
+.NCNavItem:hover {
+    color: gray;
+}

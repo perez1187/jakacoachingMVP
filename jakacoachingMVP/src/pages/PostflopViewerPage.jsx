@@ -3,7 +3,7 @@ import PostflopViewerComponent from '../components/PostflopViewerComponent/Postf
 
 function PostflopViewerPage() {
   return (
-    <div>
+    <div style={{backgroundColor:"DeepSkyBlue"}}>
         <PostflopViewerComponent/>
     </div>
   )

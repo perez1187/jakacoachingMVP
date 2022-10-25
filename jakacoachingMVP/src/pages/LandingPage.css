@@ -1,14 +1,23 @@
 .LPButtons{
     display: flex;
     flex-direction: column;
-    margin: 5px;
+    /* margin-left: auto; */
+    margin-top: 30px;
+    margin-bottom: 30px;
+    /* justify-content: center; */
+    align-self: center;
 }
 
 .LPButton{
     width: 250px;
     margin: 3px;
+    
 }
 
 .LandingPage{
     background-color: #011326;
+    /* align-items: center; */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 }
